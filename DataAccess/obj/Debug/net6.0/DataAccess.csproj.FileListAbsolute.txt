@@ -1,0 +1,16 @@
+C:\Users\lehai\source\repos\Ass02Solution\DataAccess\bin\Debug\net6.0\DataAccess.deps.json
+C:\Users\lehai\source\repos\Ass02Solution\DataAccess\bin\Debug\net6.0\DataAccess.dll
+C:\Users\lehai\source\repos\Ass02Solution\DataAccess\bin\Debug\net6.0\DataAccess.pdb
+C:\Users\lehai\source\repos\Ass02Solution\DataAccess\obj\Debug\net6.0\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lehai\source\repos\Ass02Solution\DataAccess\obj\Debug\net6.0\DataAccess.AssemblyInfoInputs.cache
+C:\Users\lehai\source\repos\Ass02Solution\DataAccess\obj\Debug\net6.0\DataAccess.AssemblyInfo.cs
+C:\Users\lehai\source\repos\Ass02Solution\DataAccess\obj\Debug\net6.0\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\lehai\source\repos\Ass02Solution\DataAccess\obj\Debug\net6.0\DataAccess.dll
+C:\Users\lehai\source\repos\Ass02Solution\DataAccess\obj\Debug\net6.0\refint\DataAccess.dll
+C:\Users\lehai\source\repos\Ass02Solution\DataAccess\obj\Debug\net6.0\DataAccess.pdb
+C:\Users\lehai\source\repos\Ass02Solution\DataAccess\obj\Debug\net6.0\ref\DataAccess.dll
+C:\Users\lehai\source\repos\Ass02Solution\DataAccess\bin\Debug\net6.0\BusinessObject.dll
+C:\Users\lehai\source\repos\Ass02Solution\DataAccess\bin\Debug\net6.0\BusinessObject.pdb
+C:\Users\lehai\source\repos\Ass02Solution\DataAccess\obj\Debug\net6.0\DataAccess.csproj.AssemblyReference.cache
+C:\Users\lehai\source\repos\Ass02Solution\DataAccess\obj\Debug\net6.0\DataAccess.csproj.CopyComplete
+C:\Users\lehai\source\repos\Ass02Solution\DataAccess\bin\Debug\net6.0\appsettings.json
