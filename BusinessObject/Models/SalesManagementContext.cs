@@ -75,7 +75,7 @@ namespace BusinessObject.Models
 
             modelBuilder.Entity<OrderDetail>(entity =>
             {
-                entity.HasNoKey();
+                //entity.HasNoKey();
 
                 entity.ToTable("OrderDetail");
 

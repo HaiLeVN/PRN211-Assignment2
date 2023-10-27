@@ -87,5 +87,37 @@ namespace DataAccess.DAO
                 }
             }
         }
+
+        public void Create(Member member)
+        {
+            if(member != null )
+            {
+                try
+                {
+                    var context = new SalesManagementContext();
+                    context.Members.Add(member);
+                    context.SaveChanges();
+                } catch(Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
+
+        public void Update(Member member)
+        {
+            if( member != null )
+            {
+                try
+                {
+                    var context = new SalesManagementContext();
+                    context.Update(member);
+                    context.SaveChanges();
+                } catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
     }
 }

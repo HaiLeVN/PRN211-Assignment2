@@ -32,7 +32,9 @@
             btnRemove = new Button();
             btnCreate = new Button();
             btnUpdate = new Button();
-            Quit = new Button();
+            btnSearch = new Button();
+            txtSearch = new TextBox();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvMemberDetail).BeginInit();
             SuspendLayout();
             // 
@@ -47,6 +49,7 @@
             dgvMemberDetail.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvMemberDetail.Size = new Size(763, 318);
             dgvMemberDetail.TabIndex = 0;
+            dgvMemberDetail.CellContentDoubleClick += dgvMemberDetail_CellContentDoubleClick;
             // 
             // btnRemove
             // 
@@ -66,6 +69,7 @@
             btnCreate.TabIndex = 7;
             btnCreate.Text = "Create";
             btnCreate.UseVisualStyleBackColor = true;
+            btnCreate.Click += btnCreate_Click;
             // 
             // btnUpdate
             // 
@@ -75,23 +79,42 @@
             btnUpdate.TabIndex = 8;
             btnUpdate.Text = "Update";
             btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
             // 
-            // Quit
+            // btnSearch
             // 
-            Quit.Location = new Point(343, 509);
-            Quit.Name = "Quit";
-            Quit.Size = new Size(94, 29);
-            Quit.TabIndex = 9;
-            Quit.Text = "Quit";
-            Quit.UseVisualStyleBackColor = true;
-            Quit.Click += Quit_Click;
+            btnSearch.Location = new Point(540, 355);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(94, 29);
+            btnSearch.TabIndex = 10;
+            btnSearch.Text = "Search";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
+            // 
+            // txtSearch
+            // 
+            txtSearch.Location = new Point(263, 357);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(252, 27);
+            txtSearch.TabIndex = 11;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(88, 360);
+            label1.Name = "label1";
+            label1.Size = new Size(162, 20);
+            label1.TabIndex = 12;
+            label1.Text = "Find by Country or City:";
             // 
             // frmMembers
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(795, 563);
-            Controls.Add(Quit);
+            Controls.Add(label1);
+            Controls.Add(txtSearch);
+            Controls.Add(btnSearch);
             Controls.Add(btnUpdate);
             Controls.Add(btnCreate);
             Controls.Add(btnRemove);
@@ -102,6 +125,7 @@
             Load += frmMembers_Load;
             ((System.ComponentModel.ISupportInitialize)dgvMemberDetail).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -110,6 +134,8 @@
         private Button btnRemove;
         private Button btnCreate;
         private Button btnUpdate;
-        private Button Quit;
+        private Button btnSearch;
+        private TextBox txtSearch;
+        private Label label1;
     }
 }

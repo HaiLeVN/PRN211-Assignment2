@@ -10,7 +10,22 @@
     <Compile Update="frmMembers.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="frmMembersDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmOrderDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmOrdersUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="frmProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmProductDetails.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

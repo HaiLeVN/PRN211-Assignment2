@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BusinessObject.Models
 {
     public partial class OrderDetail
     {
+        [Key]
         public int OrderId { get; set; }
         public int ProductId { get; set; }
         public decimal UnitPrice { get; set; }

@@ -22,10 +22,10 @@ namespace SalesWinApp
             InitializeComponent();
         }
 
-        private void GetMembersList()
+        private void GetMembersList(string search = "")
         {
             memberRepository = new MemberRepository();
-            IEnumerable<Member> members = memberRepository.GetMembers();
+            IEnumerable<Member> members = memberRepository.GetMembers().Where(s => s.City.Contains(search) || s.Country.Contains(search));
             foreach (Member member in members)
             {
                 member.Password = "**********"; // Hide the password
@@ -51,8 +51,86 @@ namespace SalesWinApp
         private void btnRemove_Click(object sender, EventArgs e)
         {
             var member = memberRepository.GetMembers().ToList()[dgvMemberDetail.CurrentRow.Index];
-            memberRepository.Delete(member);
-            GetMembersList();
+            if (member != null)
+            {
+                memberRepository.Delete(member);
+                GetMembersList();
+            }
+            else
+            {
+                MessageBox.Show("Not found member", "Remove Member", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+
+            InsertOrUpdate = true;
+            frmMembersDetail frmMembersDetail = new frmMembersDetail()
+            {
+                Text = "Create Member",
+                _MemberRepository = memberRepository,
+                _InsertOrUpdate = InsertOrUpdate
+            };
+            if (frmMembersDetail.ShowDialog() == DialogResult.OK)
+            {
+                GetMembersList();
+                source.Position = source.Count - 1;
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            var member = memberRepository.GetMembers().ToList()[dgvMemberDetail.CurrentRow.Index];
+            InsertOrUpdate = false;
+            if (member != null)
+            {
+                frmMembersDetail frmMembersDetail = new frmMembersDetail()
+                {
+                    Text = "Update Member",
+                    _MemberRepository = memberRepository,
+                    _InsertOrUpdate = InsertOrUpdate,
+                    MemberDetail = member
+                };
+                if (frmMembersDetail.ShowDialog() == DialogResult.OK)
+                {
+                    GetMembersList();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Not found member", "Update Member", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvMemberDetail_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var member = memberRepository.GetMembers().ToList()[dgvMemberDetail.CurrentRow.Index];
+            InsertOrUpdate = false;
+            if (member != null)
+            {
+                frmMembersDetail frmMembersDetail = new frmMembersDetail()
+                {
+                    Text = "Update Member",
+                    _MemberRepository = memberRepository,
+                    _InsertOrUpdate = InsertOrUpdate,
+                    MemberDetail = member
+                };
+                if (frmMembersDetail.ShowDialog() == DialogResult.OK)
+                {
+                    GetMembersList();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Not found member", "Update Member", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string keyword = txtSearch.Text;
+            GetMembersList(keyword);
         }
     }
 }

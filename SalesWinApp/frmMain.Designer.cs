@@ -35,7 +35,13 @@
             orderToolStripMenuItem = new ToolStripMenuItem();
             logOutToolStripMenuItem = new ToolStripMenuItem();
             welcomeMessage = new Label();
+            lbGuide = new Label();
+            dgvProducts = new DataGridView();
+            btnBuy = new Button();
+            llabelViewOrder = new LinkLabel();
+            lbGuide2 = new Label();
             menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -68,12 +74,14 @@
             productToolStripMenuItem1.Name = "productToolStripMenuItem1";
             productToolStripMenuItem1.Size = new Size(148, 26);
             productToolStripMenuItem1.Text = "Product";
+            productToolStripMenuItem1.Click += productToolStripMenuItem1_Click;
             // 
             // orderToolStripMenuItem
             // 
             orderToolStripMenuItem.Name = "orderToolStripMenuItem";
             orderToolStripMenuItem.Size = new Size(148, 26);
             orderToolStripMenuItem.Text = "Order";
+            orderToolStripMenuItem.Click += orderToolStripMenuItem_Click;
             // 
             // logOutToolStripMenuItem
             // 
@@ -87,11 +95,66 @@
             welcomeMessage.AutoSize = true;
             welcomeMessage.BackColor = Color.DarkGray;
             welcomeMessage.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            welcomeMessage.Location = new Point(116, 113);
+            welcomeMessage.Location = new Point(28, 44);
             welcomeMessage.Name = "welcomeMessage";
             welcomeMessage.Size = new Size(128, 46);
             welcomeMessage.TabIndex = 9;
             welcomeMessage.Text = "Hello!!!";
+            // 
+            // lbGuide
+            // 
+            lbGuide.AutoSize = true;
+            lbGuide.BackColor = SystemColors.AppWorkspace;
+            lbGuide.Location = new Point(599, 360);
+            lbGuide.Name = "lbGuide";
+            lbGuide.Size = new Size(386, 20);
+            lbGuide.TabIndex = 11;
+            lbGuide.Text = "Order a Product? Click a Product above then click Buy =>";
+            // 
+            // dgvProducts
+            // 
+            dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProducts.Location = new Point(367, 62);
+            dgvProducts.Name = "dgvProducts";
+            dgvProducts.ReadOnly = true;
+            dgvProducts.RowHeadersWidth = 51;
+            dgvProducts.RowTemplate.Height = 29;
+            dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvProducts.Size = new Size(748, 259);
+            dgvProducts.TabIndex = 12;
+            // 
+            // btnBuy
+            // 
+            btnBuy.Location = new Point(1005, 356);
+            btnBuy.Name = "btnBuy";
+            btnBuy.Size = new Size(94, 29);
+            btnBuy.TabIndex = 13;
+            btnBuy.Text = "Buy";
+            btnBuy.UseVisualStyleBackColor = true;
+            btnBuy.Click += btnBuy_Click;
+            // 
+            // llabelViewOrder
+            // 
+            llabelViewOrder.AutoSize = true;
+            llabelViewOrder.BackColor = SystemColors.AppWorkspace;
+            llabelViewOrder.Location = new Point(389, 360);
+            llabelViewOrder.Name = "llabelViewOrder";
+            llabelViewOrder.Size = new Size(134, 20);
+            llabelViewOrder.TabIndex = 16;
+            llabelViewOrder.TabStop = true;
+            llabelViewOrder.Text = "View Order History";
+            llabelViewOrder.LinkClicked += llabelViewOrder_LinkClicked;
+            // 
+            // lbGuide2
+            // 
+            lbGuide2.AutoSize = true;
+            lbGuide2.BackColor = SystemColors.AppWorkspace;
+            lbGuide2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lbGuide2.Location = new Point(28, 570);
+            lbGuide2.Name = "lbGuide2";
+            lbGuide2.Size = new Size(751, 23);
+            lbGuide2.TabIndex = 18;
+            lbGuide2.Text = "We currently make you order one product? Please stay tune before an update add to cart feature";
             // 
             // frmMain
             // 
@@ -99,6 +162,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
             ClientSize = new Size(1145, 616);
+            Controls.Add(lbGuide2);
+            Controls.Add(llabelViewOrder);
+            Controls.Add(btnBuy);
+            Controls.Add(dgvProducts);
+            Controls.Add(lbGuide);
             Controls.Add(welcomeMessage);
             Controls.Add(menuStrip1);
             IsMdiContainer = true;
@@ -106,9 +174,11 @@
             Name = "frmMain";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Management | FStore Admin";
+            FormClosing += frmMain_FormClosing;
             Load += frmMain_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvProducts).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -120,7 +190,12 @@
         private ToolStripMenuItem logOutToolStripMenuItem;
         private ToolStripMenuItem memberToolStripMenuItem;
         private ToolStripMenuItem productToolStripMenuItem1;
-        private ToolStripMenuItem orderToolStripMenuItem;
         private Label welcomeMessage;
+        private Label lbGuide;
+        private ToolStripMenuItem orderToolStripMenuItem;
+        private DataGridView dgvProducts;
+        private Button btnBuy;
+        private LinkLabel llabelViewOrder;
+        private Label lbGuide2;
     }
 }

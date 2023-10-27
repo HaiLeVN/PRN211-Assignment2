@@ -63,3 +63,8 @@ C:\Users\lehai\source\repos\Ass02Solution\SalesWinApp\obj\Debug\net6.0-windows\S
 C:\Users\lehai\source\repos\Ass02Solution\SalesWinApp\obj\Debug\net6.0-windows\SalesWinApp.csproj.CopyComplete
 C:\Users\lehai\source\repos\Ass02Solution\SalesWinApp\bin\Debug\net6.0-windows\appsettings.json
 C:\Users\lehai\source\repos\Ass02Solution\SalesWinApp\obj\Debug\net6.0-windows\SalesWinApp.frmProduct.resources
+C:\Users\lehai\source\repos\Ass02Solution\SalesWinApp\obj\Debug\net6.0-windows\SalesWinApp.frmMembersDetail.resources
+C:\Users\lehai\source\repos\Ass02Solution\SalesWinApp\obj\Debug\net6.0-windows\SalesWinApp.frmProductDetails.resources
+C:\Users\lehai\source\repos\Ass02Solution\SalesWinApp\obj\Debug\net6.0-windows\SalesWinApp.frmOrders.resources
+C:\Users\lehai\source\repos\Ass02Solution\SalesWinApp\obj\Debug\net6.0-windows\SalesWinApp.frmOrderDetails.resources
+C:\Users\lehai\source\repos\Ass02Solution\SalesWinApp\obj\Debug\net6.0-windows\SalesWinApp.frmOrdersUpdate.resources
