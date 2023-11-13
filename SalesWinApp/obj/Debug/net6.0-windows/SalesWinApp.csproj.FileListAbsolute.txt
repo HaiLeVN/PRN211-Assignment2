@@ -68,3 +68,4 @@ C:\Users\lehai\source\repos\Ass02Solution\SalesWinApp\obj\Debug\net6.0-windows\S
 C:\Users\lehai\source\repos\Ass02Solution\SalesWinApp\obj\Debug\net6.0-windows\SalesWinApp.frmOrders.resources
 C:\Users\lehai\source\repos\Ass02Solution\SalesWinApp\obj\Debug\net6.0-windows\SalesWinApp.frmOrderDetails.resources
 C:\Users\lehai\source\repos\Ass02Solution\SalesWinApp\obj\Debug\net6.0-windows\SalesWinApp.frmOrdersUpdate.resources
+C:\Users\lehai\source\repos\Ass02Solution\SalesWinApp\obj\Debug\net6.0-windows\SalesWinApp.Properties.Resources.resources

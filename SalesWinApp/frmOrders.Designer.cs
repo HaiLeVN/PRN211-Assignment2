@@ -48,6 +48,7 @@
             dgvOrders.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvOrders.Size = new Size(725, 243);
             dgvOrders.TabIndex = 0;
+            dgvOrders.CellDoubleClick += dgvOrders_CellContentClick;
             // 
             // btnRemove
             // 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 namespace BusinessObject.Models
 {
@@ -21,13 +22,18 @@ namespace BusinessObject.Models
         public virtual DbSet<OrderDetail> OrderDetails { get; set; } = null!;
         public virtual DbSet<Product> Products { get; set; } = null!;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        private string GetConnectionString()
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Server=(local);User ID=sa;Password=12345;Database=SalesManagement;Trusted_Connection=False;");
-            }
+            IConfiguration config = new ConfigurationBuilder()
+                 .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("appsettings.json", true, true)
+                        .Build();
+            var strConn = config["ConnectionStrings:SalesDB"];
+
+            return strConn;
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlServer(GetConnectionString());
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

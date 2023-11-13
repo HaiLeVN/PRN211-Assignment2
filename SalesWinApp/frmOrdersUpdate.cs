@@ -29,6 +29,7 @@ namespace SalesWinApp
             {
                 OrderId = OrderPresenter.OrderId,
                 OrderDate = OrderPresenter.OrderDate,
+                MemberId = OrderPresenter.MemberId,
                 RequiredDate = Convert.ToDateTime(dtPRequiredDate.Text),
                 ShippedDate = Convert.ToDateTime(dtPShippedDate.Text),
                 Freight = Convert.ToInt32(txtFreight.Text),

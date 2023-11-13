@@ -107,8 +107,9 @@
             // 
             // dtPShippedDate
             // 
+            dtPShippedDate.Format = DateTimePickerFormat.Short;
             dtPShippedDate.Location = new Point(180, 248);
-            dtPShippedDate.MaxDate = new DateTime(2023, 10, 27, 0, 0, 0, 0);
+            dtPShippedDate.MaxDate = new DateTime(2023, 11, 13, 0, 0, 0, 0);
             dtPShippedDate.Name = "dtPShippedDate";
             dtPShippedDate.Size = new Size(250, 27);
             dtPShippedDate.TabIndex = 7;
@@ -116,6 +117,7 @@
             // 
             // dtPRequiredDate
             // 
+            dtPRequiredDate.Format = DateTimePickerFormat.Short;
             dtPRequiredDate.Location = new Point(180, 202);
             dtPRequiredDate.MaxDate = new DateTime(2023, 12, 25, 23, 59, 59, 0);
             dtPRequiredDate.Name = "dtPRequiredDate";

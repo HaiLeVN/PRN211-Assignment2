@@ -76,32 +76,50 @@ namespace DataAccess.DAO
             }
         }
 
-        public IEnumerable<OrderDetail> findByProductId(int productId)
+        public OrderDetail findByProductId(int productId)
         {
-            IEnumerable<OrderDetail> orderDetails = new List<OrderDetail>();
+            OrderDetail orderDetail = null;
             try
             {
                 var context = new SalesManagementContext();
-                orderDetails = context.OrderDetails.Where(od => od.ProductId.Equals(productId));
+                orderDetail = context.OrderDetails.FirstOrDefault(o => o.ProductId == productId);
             } catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-            return orderDetails;
+            return orderDetail;
         }
 
-        public IEnumerable<OrderDetail> findByOrderId(int orderId)
+        public OrderDetail findByOrderId(int orderId)
         {
-            IEnumerable<OrderDetail> orderDetails = new List<OrderDetail>();
+            OrderDetail orderDetail = new OrderDetail();
             try
             {
                 var context = new SalesManagementContext();
-                orderDetails = context.OrderDetails.Where(od => od.OrderId.Equals(orderId));
+                orderDetail = context.OrderDetails.FirstOrDefault(o => o.OrderId == orderId);
             } catch(Exception ex)
             {
                 throw new Exception(ex.Message );
             }
-            return orderDetails;
+            return orderDetail;
+        }
+
+        public void DeleteById(int id)
+        {
+            try
+            {
+                var context = new SalesManagementContext();
+                OrderDetail orderDetail = context.OrderDetails.FirstOrDefault(o => o.OrderId == id);
+
+                if (orderDetail != null)
+                {
+                    context.OrderDetails.Remove(orderDetail);
+                    context.SaveChanges();
+                }
+            } catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

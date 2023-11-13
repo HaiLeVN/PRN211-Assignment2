@@ -1,6 +1,7 @@
 ﻿using BusinessObject.Models;
 using DataAccess.Repository;
 using System.Data;
+using System.Diagnostics.Metrics;
 
 namespace SalesWinApp
 {
@@ -37,6 +38,8 @@ namespace SalesWinApp
 
                 dgvOrders.DataSource = null;
                 dgvOrders.DataSource = source;
+
+                dgvOrders.Columns["Member"].Visible = false;
             }
             else
             {
@@ -61,15 +64,21 @@ namespace SalesWinApp
         private void btnRemove_Click(object sender, EventArgs e)
         {
             _orderRepository = new OrderRepository();
+            OrderDetailsRepository orderDetails = new OrderDetailsRepository();
             var orders = _orderRepository.GetAllOrders().ToList()[dgvOrders.CurrentRow.Index];
             if (orders != null)
             {
-                bool result = _orderRepository.DeleteOrder(orders);
-                if(!result)
+                bool result = false;
+                if (MessageBox.Show("Are you sure? You will delete this order", "Remove order", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 {
-                    MessageBox.Show("Cannot remove this Order, remove order details first", "Remove order", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    orderDetails.DeleteById(orders.OrderId);
+                    result = _orderRepository.DeleteOrder(orders);
+                    if (!result)
+                    {
+                        MessageBox.Show("Cannot remove this Order, remove order details first", "Remove order", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    }
+                    GetOrdersList();
                 }
-                GetOrdersList();
             }
             else
             {
@@ -84,8 +93,16 @@ namespace SalesWinApp
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            if (txtSearch.Text == string.Empty)
+            {
+                GetOrdersList();
+            }
+            else
+            {
+                GetOrdersList(Convert.ToInt32(txtSearch.Text));
+            }
             // Search by Member ID
-            GetOrdersList(Convert.ToInt32(txtSearch.Text));
+
         }
 
         private void frmOrders_Load(object sender, EventArgs e)
@@ -96,7 +113,7 @@ namespace SalesWinApp
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             var orders = _orderRepository.GetAllOrders().ToList()[dgvOrders.CurrentRow.Index];
-            if(orders != null)
+            if (orders != null)
             {
                 frmOrdersUpdate frmOrdersUpdate = new frmOrdersUpdate()
                 {
@@ -104,11 +121,30 @@ namespace SalesWinApp
                     orderRepository = _orderRepository,
                     OrderPresenter = orders
                 };
-                if(frmOrdersUpdate.ShowDialog() == DialogResult.OK)
+                if (frmOrdersUpdate.ShowDialog() == DialogResult.OK)
                 {
                     GetOrdersList();
                 }
             }
+        }
+
+        private void dgvOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var orders = _orderRepository.GetAllOrders().ToList()[dgvOrders.CurrentRow.Index];
+            if(orders != null)
+            {
+                frmOrderDetails frmOrderDetails = new frmOrderDetails()
+                {
+                    Text = "Chi tiết đơn đặt hàng",
+                    orderId = orders.OrderId,
+                    _member = _LoginMember
+                };
+                if (frmOrderDetails.ShowDialog() == DialogResult.OK)
+                {
+                    GetOrdersList();
+                }
+            }
+            
         }
     }
 }

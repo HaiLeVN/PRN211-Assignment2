@@ -1,4 +1,5 @@
-﻿using BusinessObject.Models;
+﻿using BusinessObject;
+using BusinessObject.Models;
 using DataAccess.Repository;
 using System;
 using System.Collections.Generic;
@@ -19,14 +20,32 @@ namespace SalesWinApp
         public IMemberRepository _MemberRepository { get; set; }
         public frmMembersDetail()
         {
+
             InitializeComponent();
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             _MemberRepository = new MemberRepository();
+            string email = txtEmail.Text;
+            if (!Utilities.IsValidEmail(email))
+            {
+                MessageBox.Show("Invalid email", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (_InsertOrUpdate)
             {
+                foreach (Control control in Controls)
+                {
+                    if (control is TextBox tb)
+                    {
+                        if (string.IsNullOrEmpty(tb.Text))
+                        {
+                            MessageBox.Show("All fields are required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                }
                 Member member = new Member()
                 {
                     Email = txtEmail.Text,
@@ -40,6 +59,23 @@ namespace SalesWinApp
             }
             else
             {
+                string _email = txtEmail.Text;
+                if(!Utilities.IsValidEmail(_email))
+                {
+                    MessageBox.Show("Invalid email", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                foreach (Control control in Controls)
+                {
+                    if (control is TextBox tb)
+                    {
+                        if (string.IsNullOrEmpty(tb.Text))
+                        {
+                            MessageBox.Show("All fields are required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                }
                 Member UpdateMember = new Member()
                 {
                     MemberId = MemberDetail.MemberId,
@@ -61,6 +97,7 @@ namespace SalesWinApp
 
         private void frmMembersDetail_Load(object sender, EventArgs e)
         {
+            
             if (!_InsertOrUpdate)
             {
                 txtEmail.Text = MemberDetail.Email;
@@ -69,6 +106,11 @@ namespace SalesWinApp
                 txtCountry.Text = MemberDetail.Country;
                 txtPassword.Text = MemberDetail.Password;
             }
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

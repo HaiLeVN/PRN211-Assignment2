@@ -17,12 +17,15 @@ namespace SalesWinApp
         IProductRepository productRepository = new ProductRepository();
         IOrderDetailsRepository orderDetailsRepository = new OrderDetailsRepository();
         IOrderRepository orderRepository = new OrderRepository();
+        private int openChildFormsCount = 0;
+
         public Member _loginMember { get; set; }
         BindingSource bindingSource;
         public frmMain() => InitializeComponent();
 
         private void memberToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             HideMainComponents();
             if (this.ActiveMdiChild != null && ActiveMdiChild is frmMembers)
             {
@@ -38,6 +41,7 @@ namespace SalesWinApp
                     ShowMainComponents();
                 };
                 frmMembers.Show();
+                openChildFormsCount++;
             }
         }
 
@@ -53,12 +57,16 @@ namespace SalesWinApp
 
         private void ShowMainComponents()
         {
-            dgvProducts.Visible = true;
-            welcomeMessage.Visible = true;
-            btnBuy.Visible = true;
-            llabelViewOrder.Visible = true;
-            lbGuide.Visible = true;
-            lbGuide2.Visible = true;
+            openChildFormsCount--;
+            if (openChildFormsCount == 0)
+            {
+                dgvProducts.Visible = true;
+                welcomeMessage.Visible = true;
+                btnBuy.Visible = true;
+                llabelViewOrder.Visible = true;
+                lbGuide.Visible = true;
+                lbGuide2.Visible = true;
+            }
         }
 
 
@@ -79,6 +87,10 @@ namespace SalesWinApp
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            if (_loginMember.MemberId != 0)
+            {
+                tsmManage.Enabled = false;
+            }
             IEnumerable<Product> products = productRepository.GetAllProducts().ToList();
 
             bindingSource = new BindingSource();
@@ -109,6 +121,7 @@ namespace SalesWinApp
                     ShowMainComponents();
                 };
                 frmProduct.Show();
+                openChildFormsCount++;
             }
         }
 
@@ -129,6 +142,7 @@ namespace SalesWinApp
                     ShowMainComponents();
                 };
                 order.Show();
+                openChildFormsCount++;
             }
         }
 
@@ -138,7 +152,7 @@ namespace SalesWinApp
 
             if (buyProduct != null)
             {
-                if (MessageBox.Show("Would you like to buy it? ", "Buy Product", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
+                if (MessageBox.Show("Would you like to buy it? ", "Buy Product", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                 {
                     if (_loginMember.MemberId != 0)
                     {
@@ -183,6 +197,7 @@ namespace SalesWinApp
                 _orderRepository = orderRepository
             };
             orders.Show();
+
         }
     }
 }

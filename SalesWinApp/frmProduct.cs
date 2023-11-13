@@ -31,7 +31,7 @@ namespace SalesWinApp
         private void GetProductList(string search = "")
         {
             productRepository = new ProductRepository();
-            IEnumerable<Product> products = productRepository.GetAllProducts().ToList().Where(s => s.ProductName.Contains(search));
+            IEnumerable<Product> products = productRepository.GetAllProducts().ToList().Where(s => s.ProductName.ToLower().Contains(search.ToLower()));
 
             bindingSource = new BindingSource();
 
@@ -52,12 +52,24 @@ namespace SalesWinApp
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
+            OrderDetailsRepository orderDetailsRepository = new OrderDetailsRepository();
             var product = productRepository.GetAllProducts().ToList()[dgvProductDetails.CurrentRow.Index];
 
             if (product != null)
             {
-                productRepository.Delete(product);
-                GetProductList();
+                if (MessageBox.Show("Are you sure? You will delete this product", "Remove product", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                {
+                    OrderDetail orderDetails = orderDetailsRepository.findByProductID(product.ProductId);
+                    if(orderDetails == null)
+                    {
+                        productRepository.Delete(product);
+                        GetProductList();
+                    } else
+                    {
+                        MessageBox.Show("You cannot remove this product because this product is ordered", "Remove product", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    }
+                    
+                }
             }
             else
             {
@@ -93,8 +105,7 @@ namespace SalesWinApp
                     _InsertOrUpdate = InsertOrUpdate,
                     _productRepository = productRepository
                 };
-                frmProductDetails.Show();
-                if (frmProductDetails.DialogResult == DialogResult.OK)
+                if (frmProductDetails.ShowDialog() == DialogResult.OK)
                 {
                     GetProductList();
                 }

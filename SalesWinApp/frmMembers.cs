@@ -25,7 +25,7 @@ namespace SalesWinApp
         private void GetMembersList(string search = "")
         {
             memberRepository = new MemberRepository();
-            IEnumerable<Member> members = memberRepository.GetMembers().Where(s => s.City.Contains(search) || s.Country.Contains(search));
+            IEnumerable<Member> members = memberRepository.GetMembers().Where(s => s.City.ToLower().Contains(search.ToLower()) || s.Country.ToLower().Contains(search.ToLower()));
             foreach (Member member in members)
             {
                 member.Password = "**********"; // Hide the password
@@ -34,6 +34,7 @@ namespace SalesWinApp
             source.DataSource = members;
             dgvMemberDetail.DataSource = null;
             dgvMemberDetail.DataSource = source;
+            dgvMemberDetail.Columns.Remove("Orders");
         }
 
         private void frmMembers_Load(object sender, EventArgs e)
@@ -53,8 +54,18 @@ namespace SalesWinApp
             var member = memberRepository.GetMembers().ToList()[dgvMemberDetail.CurrentRow.Index];
             if (member != null)
             {
-                memberRepository.Delete(member);
-                GetMembersList();
+                if (MessageBox.Show("Are you sure? You will delete this member", "Remove member", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                {
+                    try
+                    {
+                        memberRepository.Delete(member);
+                        GetMembersList();
+                    } catch(Exception ex)
+                    {
+                        MessageBox.Show("error: " + ex.Message, "Remove member", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    }
+                    
+                }
             }
             else
             {

@@ -1,4 +1,5 @@
 ﻿using BusinessObject.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -86,14 +87,9 @@ namespace DataAccess.DAO
             try
             {
                 var context = new SalesManagementContext();
-                
-                IEnumerable<OrderDetail> orderDetails = OrderDetailDAO.Instance.findByOrderId(order.OrderId);
-                if(orderDetails == null)
-                {
-                    succcess = true;
+                succcess = true;
                     context.Orders.Remove(order);
                     context.SaveChanges();
-                }
             } catch(Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -107,8 +103,17 @@ namespace DataAccess.DAO
             {
                 var context = new SalesManagementContext();
 
-                    context.Orders.Update(order);
+                var _order = context.Orders.FirstOrDefault(o => o.OrderId == order.OrderId);
+                if (_order != null)
+                {
+                    _order.OrderId = order.OrderId;
+                    _order.MemberId = order.MemberId;
+                    _order.Freight = order.Freight;
+                    _order.OrderDate = order.OrderDate;
+                    _order.RequiredDate = order.RequiredDate;
+                    _order.ShippedDate = order.ShippedDate;
                     context.SaveChanges();
+                }
                 
             } catch(Exception ex)
             {

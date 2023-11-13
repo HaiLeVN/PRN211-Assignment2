@@ -2455,7 +2455,6 @@
     "net6.0": [
       "Microsoft.EntityFrameworkCore >= 6.0.20",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.20",
-      "Microsoft.EntityFrameworkCore.Relational >= 6.0.20",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.20",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.20",
       "Microsoft.Extensions.Configuration >= 7.0.0",
@@ -2514,10 +2513,6 @@
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
-            "target": "Package",
-            "version": "[6.0.20, )"
-          },
-          "Microsoft.EntityFrameworkCore.Relational": {
             "target": "Package",
             "version": "[6.0.20, )"
           },

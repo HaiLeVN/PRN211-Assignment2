@@ -14,11 +14,13 @@ namespace DataAccess.Repository
 
         public void Delete(OrderDetail orderDetail) => OrderDetailDAO.Instance.Remove(orderDetail);
 
+        public void DeleteById(int orderId) => OrderDetailDAO.Instance.DeleteById(orderId);
+
         public IEnumerable<OrderDetail> findAll() => OrderDetailDAO.Instance.GetOrderDetails();
 
-        public IEnumerable<OrderDetail> findById(int id) => OrderDetailDAO.Instance.findByOrderId(id);
+        public OrderDetail findById(int id) => OrderDetailDAO.Instance.findByOrderId(id);
 
-        public IEnumerable<OrderDetail> findByProductID(int productID) => OrderDetailDAO.Instance.findByProductId(productID);
+        public OrderDetail findByProductID(int productID) => OrderDetailDAO.Instance.findByProductId(productID);
         public void Update(OrderDetail orderDetail) => OrderDetailDAO.Instance.Update(orderDetail);
     }
 }

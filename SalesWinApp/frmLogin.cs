@@ -1,4 +1,5 @@
-﻿using BusinessObject.Models;
+﻿using BusinessObject;
+using BusinessObject.Models;
 using DataAccess.Repository;
 using System;
 using System.Collections.Generic;
@@ -56,6 +57,11 @@ namespace SalesWinApp
             {
                 MessageBox.Show(ex.Message, "Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

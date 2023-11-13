@@ -93,6 +93,7 @@
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(256, 27);
             txtEmail.TabIndex = 5;
+            txtEmail.TextChanged += txtEmail_TextChanged;
             // 
             // txtCompanyName
             // 

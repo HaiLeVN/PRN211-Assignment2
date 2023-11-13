@@ -913,7 +913,6 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "6.0.20",
-          "Microsoft.EntityFrameworkCore.Relational": "6.0.20",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.20",
           "Microsoft.Extensions.Configuration": "7.0.0",
           "Microsoft.Extensions.Configuration.Json": "7.0.0"

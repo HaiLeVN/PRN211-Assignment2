@@ -33,15 +33,15 @@
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
-            label6 = new Label();
-            maskedTextBox1 = new MaskedTextBox();
-            maskedTextBox2 = new MaskedTextBox();
-            maskedTextBox3 = new MaskedTextBox();
-            maskedTextBox4 = new MaskedTextBox();
-            numericUpDown1 = new NumericUpDown();
-            maskedTextBox5 = new MaskedTextBox();
+            txtOrderID = new MaskedTextBox();
+            txtProductID = new MaskedTextBox();
+            txtUnitPrice = new MaskedTextBox();
+            txtQuantity = new MaskedTextBox();
+            numericDiscount = new NumericUpDown();
             label7 = new Label();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            btnSubmit = new Button();
+            btnCancel = new Button();
+            ((System.ComponentModel.ISupportInitialize)numericDiscount).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -89,57 +89,49 @@
             label5.TabIndex = 4;
             label5.Text = "Discount";
             // 
-            // label6
+            // txtOrderID
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(30, 264);
-            label6.Name = "label6";
-            label6.Size = new Size(55, 20);
-            label6.TabIndex = 5;
-            label6.Text = "Freight";
+            txtOrderID.Location = new Point(202, 38);
+            txtOrderID.Name = "txtOrderID";
+            txtOrderID.Size = new Size(299, 27);
+            txtOrderID.TabIndex = 6;
             // 
-            // maskedTextBox1
+            // txtProductID
             // 
-            maskedTextBox1.Location = new Point(202, 38);
-            maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.Size = new Size(299, 27);
-            maskedTextBox1.TabIndex = 6;
+            txtProductID.Location = new Point(202, 80);
+            txtProductID.Name = "txtProductID";
+            txtProductID.Size = new Size(299, 27);
+            txtProductID.TabIndex = 7;
             // 
-            // maskedTextBox2
+            // txtUnitPrice
             // 
-            maskedTextBox2.Location = new Point(202, 80);
-            maskedTextBox2.Name = "maskedTextBox2";
-            maskedTextBox2.Size = new Size(299, 27);
-            maskedTextBox2.TabIndex = 7;
+            txtUnitPrice.Location = new Point(202, 126);
+            txtUnitPrice.Mask = "00000";
+            txtUnitPrice.Name = "txtUnitPrice";
+            txtUnitPrice.Size = new Size(299, 27);
+            txtUnitPrice.TabIndex = 8;
+            txtUnitPrice.Text = "0";
+            txtUnitPrice.ValidatingType = typeof(int);
             // 
-            // maskedTextBox3
+            // txtQuantity
             // 
-            maskedTextBox3.Location = new Point(202, 126);
-            maskedTextBox3.Name = "maskedTextBox3";
-            maskedTextBox3.Size = new Size(299, 27);
-            maskedTextBox3.TabIndex = 8;
+            txtQuantity.Location = new Point(202, 166);
+            txtQuantity.Mask = "00000";
+            txtQuantity.Name = "txtQuantity";
+            txtQuantity.Size = new Size(299, 27);
+            txtQuantity.TabIndex = 9;
+            txtQuantity.Text = "0";
+            txtQuantity.ValidatingType = typeof(int);
             // 
-            // maskedTextBox4
+            // numericDiscount
             // 
-            maskedTextBox4.Location = new Point(202, 166);
-            maskedTextBox4.Name = "maskedTextBox4";
-            maskedTextBox4.Size = new Size(299, 27);
-            maskedTextBox4.TabIndex = 9;
-            // 
-            // numericUpDown1
-            // 
-            numericUpDown1.Location = new Point(202, 212);
-            numericUpDown1.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(150, 27);
-            numericUpDown1.TabIndex = 10;
-            // 
-            // maskedTextBox5
-            // 
-            maskedTextBox5.Location = new Point(202, 261);
-            maskedTextBox5.Name = "maskedTextBox5";
-            maskedTextBox5.Size = new Size(299, 27);
-            maskedTextBox5.TabIndex = 11;
+            numericDiscount.Hexadecimal = true;
+            numericDiscount.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
+            numericDiscount.Location = new Point(202, 212);
+            numericDiscount.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericDiscount.Name = "numericDiscount";
+            numericDiscount.Size = new Size(150, 27);
+            numericDiscount.TabIndex = 10;
             // 
             // label7
             // 
@@ -150,19 +142,43 @@
             label7.TabIndex = 12;
             label7.Text = "0 = 0%, 1 = 100%";
             // 
+            // btnSubmit
+            // 
+            btnSubmit.DialogResult = DialogResult.OK;
+            btnSubmit.Location = new Point(342, 298);
+            btnSubmit.Name = "btnSubmit";
+            btnSubmit.Size = new Size(94, 29);
+            btnSubmit.TabIndex = 13;
+            btnSubmit.Text = "Submit";
+            btnSubmit.UseVisualStyleBackColor = true;
+            btnSubmit.Click += btnSubmit_Click;
+            // 
+            // btnCancel
+            // 
+            btnCancel.DialogResult = DialogResult.Cancel;
+            btnCancel.Location = new Point(485, 298);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(94, 29);
+            btnCancel.TabIndex = 14;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
+            // 
             // frmOrderDetails
             // 
+            AcceptButton = btnSubmit;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(729, 450);
+            CancelButton = btnCancel;
+            ClientSize = new Size(687, 376);
+            Controls.Add(btnCancel);
+            Controls.Add(btnSubmit);
             Controls.Add(label7);
-            Controls.Add(maskedTextBox5);
-            Controls.Add(numericUpDown1);
-            Controls.Add(maskedTextBox4);
-            Controls.Add(maskedTextBox3);
-            Controls.Add(maskedTextBox2);
-            Controls.Add(maskedTextBox1);
-            Controls.Add(label6);
+            Controls.Add(numericDiscount);
+            Controls.Add(txtQuantity);
+            Controls.Add(txtUnitPrice);
+            Controls.Add(txtProductID);
+            Controls.Add(txtOrderID);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -170,7 +186,8 @@
             Controls.Add(label1);
             Name = "frmOrderDetails";
             Text = "frmOrderDetails";
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            Load += frmOrderDetails_Load;
+            ((System.ComponentModel.ISupportInitialize)numericDiscount).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -182,13 +199,13 @@
         private Label label3;
         private Label label4;
         private Label label5;
-        private Label label6;
-        private MaskedTextBox maskedTextBox1;
-        private MaskedTextBox maskedTextBox2;
-        private MaskedTextBox maskedTextBox3;
-        private MaskedTextBox maskedTextBox4;
-        private NumericUpDown numericUpDown1;
-        private MaskedTextBox maskedTextBox5;
+        private MaskedTextBox txtOrderID;
+        private MaskedTextBox txtProductID;
+        private MaskedTextBox txtUnitPrice;
+        private MaskedTextBox txtQuantity;
+        private NumericUpDown numericDiscount;
         private Label label7;
+        private Button btnSubmit;
+        private Button btnCancel;
     }
 }

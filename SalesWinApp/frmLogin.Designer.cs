@@ -60,6 +60,7 @@
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(239, 27);
             txtEmail.TabIndex = 2;
+            txtEmail.TextChanged += txtEmail_TextChanged;
             // 
             // txtPassword
             // 

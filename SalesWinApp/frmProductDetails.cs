@@ -40,6 +40,24 @@ namespace SalesWinApp
             _productRepository = new ProductRepository();
             if(_InsertOrUpdate)
             {
+                foreach (Control control in Controls)
+                {
+                    if (control is TextBox tb)
+                    {
+                        if (string.IsNullOrEmpty(tb.Text))
+                        {
+                            MessageBox.Show("All fields are required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                }
+
+                bool isNumericWeight = int.TryParse(txtWeight.Text, out int weight);
+                if (!isNumericWeight || Convert.ToInt32(txtWeight.Text) < 0)
+                {
+                    MessageBox.Show("Bad input in Weight field!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 // Create Product
                 Product product = new Product()
                 {
@@ -53,6 +71,23 @@ namespace SalesWinApp
                 this.Close();
             } else
             {
+                foreach (Control control in Controls)
+                {
+                    if (control is TextBox tb)
+                    {
+                        if (string.IsNullOrEmpty(tb.Text))
+                        {
+                            MessageBox.Show("All fields are required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                }
+                bool isNumericWeight = int.TryParse(txtWeight.Text, out int weight);
+                if (!isNumericWeight || Convert.ToInt32(txtWeight.Text) < 0)
+                {
+                    MessageBox.Show("Bad input in Weight field!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 // Update product
                 Product product = new Product()
                 {
